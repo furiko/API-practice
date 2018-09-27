@@ -12,6 +12,10 @@
 		CB574AD5215BE857008AF018 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB574AD3215BE857008AF018 /* Main.storyboard */; };
 		CB574AD7215BE85A008AF018 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB574AD6215BE85A008AF018 /* Assets.xcassets */; };
 		CB574ADA215BE85A008AF018 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB574AD8215BE85A008AF018 /* LaunchScreen.storyboard */; };
+		CB574AE2215BE88C008AF018 /* GHAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB574AE1215BE88C008AF018 /* GHAPIModel.swift */; };
+		CB574AE4215BE906008AF018 /* ViewGHAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB574AE3215BE906008AF018 /* ViewGHAPIController.swift */; };
+		CB574AE6215C84E8008AF018 /* StructRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB574AE5215C84E8008AF018 /* StructRepository.swift */; };
+		CB574AE8215CC213008AF018 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB574AE7215CC213008AF018 /* ResultViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		CB574AD6215BE85A008AF018 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB574AD9215BE85A008AF018 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB574ADB215BE85A008AF018 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB574AE1215BE88C008AF018 /* GHAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHAPIModel.swift; sourceTree = "<group>"; };
+		CB574AE3215BE906008AF018 /* ViewGHAPIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewGHAPIController.swift; sourceTree = "<group>"; };
+		CB574AE5215C84E8008AF018 /* StructRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructRepository.swift; sourceTree = "<group>"; };
+		CB574AE7215CC213008AF018 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,10 @@
 			children = (
 				CB574ACF215BE857008AF018 /* AppDelegate.swift */,
 				CB574AD1215BE857008AF018 /* ViewController.swift */,
+				CB574AE3215BE906008AF018 /* ViewGHAPIController.swift */,
+				CB574AE7215CC213008AF018 /* ResultViewController.swift */,
+				CB574AE1215BE88C008AF018 /* GHAPIModel.swift */,
+				CB574AE5215C84E8008AF018 /* StructRepository.swift */,
 				CB574AD3215BE857008AF018 /* Main.storyboard */,
 				CB574AD6215BE85A008AF018 /* Assets.xcassets */,
 				CB574AD8215BE85A008AF018 /* LaunchScreen.storyboard */,
@@ -135,8 +147,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB574AE4215BE906008AF018 /* ViewGHAPIController.swift in Sources */,
+				CB574AE6215C84E8008AF018 /* StructRepository.swift in Sources */,
 				CB574AD2215BE857008AF018 /* ViewController.swift in Sources */,
 				CB574AD0215BE857008AF018 /* AppDelegate.swift in Sources */,
+				CB574AE2215BE88C008AF018 /* GHAPIModel.swift in Sources */,
+				CB574AE8215CC213008AF018 /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

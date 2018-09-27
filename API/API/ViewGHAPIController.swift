@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+class ViewGHAPIController {
+    let model = GHAPIModel()
+    func getRepoData(UserName uName: String, RepositoryName rName: String) {
+        /*let data: Data =*/
+        model.get(UserName: uName, RepositoryName: rName)
+    }
+    
+    func getResult() -> GHAPIModel.Repository {
+        return model.getResult()
+    }
+}
