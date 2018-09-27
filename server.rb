@@ -1,5 +1,5 @@
 require 'sinatra'
-#require 'rest-client'
+require 'rest-client'
 require 'json'
 
 CLIENT_ID = ENV['GH_BASIC_CLIENT_ID']
