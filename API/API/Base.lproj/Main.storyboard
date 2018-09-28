@@ -55,7 +55,6 @@
                                 <state key="normal" title="Search"/>
                                 <connections>
                                     <action selector="tapSearchButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="AAx-ah-d4k"/>
-                                    <segue destination="CZl-b6-ZlB" kind="presentation" identifier="toResultViewController" id="b5w-d2-aru"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -95,7 +94,7 @@
         <!--Result View Controller-->
         <scene sceneID="fmo-rq-eHp">
             <objects>
-                <viewController id="CZl-b6-ZlB" customClass="ResultViewController" customModule="API" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResultViewController" id="CZl-b6-ZlB" customClass="ResultViewController" customModule="API" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BEA-sZ-kae">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

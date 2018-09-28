@@ -7,40 +7,70 @@
 //
 
 import Foundation
+import Himotoki
 
 class GHAPIModel {  //GitHub API Model
     var result: Repository?
-    func get(UserName uName: String, RepositoryName rName: String) {
+    
+    
+    enum APIError: Error {
+        case netWork
+    }
+    func get(UserName uName: String, RepositoryName rName: String, completion: @escaping (Data) -> Void) {
+        print("model get")
         var url = "https://api.github.com/repos/"
         url += uName + "/" + rName
 
+
         let myUrl: URL = URL(string: url)!
+        print("session before")
         let session = URLSession.shared.dataTask(with: myUrl){ data, response, error in
-            
+            print("session in ")
             if let error = error {
                 print("クライアントエラー: \(error.localizedDescription) \n" )
+//                throw   APIError.netWork
                 return
             }
             
-            guard let data = data, let response = response as? HTTPURLResponse else {
-                print("No Data or No Response")
+            guard let response = response as? HTTPURLResponse else {
+                print("No Response")
+//                throw APIError.netWork
+                return
+            }
+            
+            guard let data = data else {
+                print("No Response")
                 return
             }
             
             if response.statusCode == 200 {
                 print("success")
                 print(data)
-                self.parseJSON(data)
+//                self.data2 = data
+//                    self.parseJSON(data)
             } else {
                 print("url: \(url)")
                 print("サーバーサイドエラー ステータスコード: \(response.statusCode)\n")
             }
+            completion(data)
+            print("session out")
         }
         session.resume()
+        
+        print("model get last")
    //     return data2!
+//        return parseJSON(data2!)
     }
     
-    func parseJSON(_ data: Data?) {
+    func parseJSON(_ data: Data) -> Repository {
+        print("parse start")
+        let repo = try? Repository.decodeValue(from: data)
+        print("repo:\(repo)")
+        return repo!
+//        XCTAssert(repo != nil)
+    }
+    
+    /*    func parseJSON(_ data: Data?) {
         guard let data = data else {
             print("Error: No data to decode")
             return
@@ -53,15 +83,16 @@ class GHAPIModel {  //GitHub API Model
         
         print(repo)
         self.result = repo
+//        print("self.result",self.result)
         /*print("id: \(repo.id)")
         print("name: \(repo.name)")
         print("full_name: \(repo.fullName)")*/
 //        print("owner: \(repo.owner)")
     }
-    
-    func getResult() -> Repository {
+    */
+/*    func getResult() -> Repository {
         return result!
-    }
+    }*/
     
     /*
      repositoryで知りたい情報
@@ -69,7 +100,7 @@ class GHAPIModel {  //GitHub API Model
      オーナー
      
      */
-    
+    /*
     struct Owner: Decodable {
         let login: String
         let id: Int
@@ -88,7 +119,20 @@ class GHAPIModel {  //GitHub API Model
              case collaboratorsUrl = "collaborators_url"*/
         }
     }
+ */
     
+    struct Repository: Himotoki.Decodable {
+        let id: Int
+        let name: String
+        
+        static func decode(_ e: Extractor) throws -> Repository {
+            return try Repository (
+                id: e <| "id",
+                name: e <| "name"
+            )
+        }
+    }
+    /*
     struct Repository: Decodable {
         let id: Int
         let nodeId: String
@@ -124,6 +168,7 @@ class GHAPIModel {  //GitHub API Model
             case collaboratorsUrl = "collaborators_url"
         }
     }
+ */
     
 
     /*

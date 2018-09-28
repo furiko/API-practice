@@ -7,15 +7,20 @@
 //
 
 import Foundation
-
+import Himotoki
 class ViewGHAPIController {
     let model = GHAPIModel()
-    func getRepoData(UserName uName: String, RepositoryName rName: String) {
+    var result: GHAPIModel.Repository?
+    func getRepoData(UserName uName: String, RepositoryName rName: String) /*-> GHAPIModel.Repository*/{
         /*let data: Data =*/
-        model.get(UserName: uName, RepositoryName: rName)
+        model.get(UserName: uName, RepositoryName: rName, completion: {(data: Data) -> Void in
+            self.result = self.model.parseJSON(data)
+        })
+      // return result!
     }
     
     func getResult() -> GHAPIModel.Repository {
-        return model.getResult()
+        print("controller get前")
+        return result!
     }
 }

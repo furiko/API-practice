@@ -1,0 +1,16 @@
+PODS:
+  - Himotoki (3.2.0)
+
+DEPENDENCIES:
+  - Himotoki (~> 3.1)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Himotoki
+
+SPEC CHECKSUMS:
+  Himotoki: 2618fc6b939ad6d9b71c52c90fe210f54ea28167
+
+PODFILE CHECKSUM: ac2d03f050040d87898cb6bae05ca488fe3abb05
+
+COCOAPODS: 1.5.3
