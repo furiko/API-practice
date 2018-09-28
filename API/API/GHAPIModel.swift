@@ -61,6 +61,7 @@ class GHAPIModel {  //GitHub API Model
         let updatedAt: String
         let forksCount: Int
         let hasIssues: Bool
+//        let owner: String
         static func decode(_ e: Extractor) throws -> Repository {
             return try Repository (
                 id: e <| "id",
@@ -69,6 +70,7 @@ class GHAPIModel {  //GitHub API Model
                 updatedAt: e <| "updated_at",
                 forksCount: e <| "forks_count",
                 hasIssues: e <| "has_issues"
+/*                owner: e <| ["login", "avatar_url"]*/
             )
         }
     }

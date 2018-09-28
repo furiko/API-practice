@@ -25,9 +25,21 @@ class ResultViewController: UIViewController {
    func setResult() {   //set to TextField
         result = controller.getResult()
         repoName.text = result.name
-        createDate.text = result.createdAt
-        updateDate.text = result.updatedAt
+    
+        //convert from ISO8601 to Date and formatting
+        let formatter = ISO8601DateFormatter.init()
+        let createdDate = formatter.date(from: result.createdAt)
+        let updatedDate = formatter.date(from: result.updatedAt)
+        let f = DateFormatter()
+        f.timeStyle = .medium
+        f.dateStyle = .medium
+        f.locale = Locale(identifier: "ja_JP")
+    
+        createDate.text = f.string(from: createdDate!)
+        updateDate.text = f.string(from: updatedDate!)
         numOfFork.text = String(result.forksCount)
+//        let name = result.owner
+//        print(name)
     
         if result!.hasIssues {
             doesIssueExist.text = "Yes"
@@ -36,9 +48,4 @@ class ResultViewController: UIViewController {
         }
     }
  
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 }
