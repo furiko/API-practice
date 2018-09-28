@@ -16,19 +16,14 @@ class ViewController: UIViewController {
     @IBAction func tapSearchButton() {
         let user = "furiko"
         let repo = "practiceTodo"
-        print("get前")
-        controller.getRepoData(UserName: user, RepositoryName: repo)
-        print("after get")
-//        result = controller.getResult()
-//        print("after catch result")
-        print("get前")
-//        result = controller.getResult()
-        DispatchQueue.main.asyncAfter(deadline: .now()+3.0){
+        //let user = UserName.text
+        //let repo = RepositryName.text
+        controller.callGitHubAPI(UserName: user, RepositoryName: repo)    //ModelにRepositoryの中身を取りに行ってもらう
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+1.0){    //1秒遅延してAPIから値が返ってくるのを待つ
             let storyboard: UIStoryboard = self.storyboard!
             let second = storyboard.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
-//            self.performSegue(withIdentifier: "toResultViewController", sender: nil)
-//            let next = ResultViewController()
-            second.result = self.controller.getResult()
+//            second.result = self.controller.getResult()
             self.present(second, animated: true, completion: nil)
         }
 
@@ -36,13 +31,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*
-        let user = "furiko"
-        let repo = "practiceTodo"
-        print("get前")
-        controller.getRepoData(UserName: user, RepositoryName: repo)
-        print("after get")
- */
 
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -52,7 +40,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let identifier = segue.identifier
         if identifier == "toResultViewController" {
             let next: ResultViewController = (segue.destination as? ResultViewController)!
@@ -64,8 +52,7 @@ class ViewController: UIViewController {
 ///            result = controller.getResult()
 
         }
-    }
-
+    }*/
 
 }
 
