@@ -9,29 +9,33 @@
 import Foundation
 import Himotoki
 
-class GHAPIModel {  //GitHub API Model
+class GitHubAPIModel {  //GitHub API Model
     static var result: Repository?
 
-    static func get(UserName uName: String, RepositoryName rName: String) { //call GitHub API and decode response
 
-        var url = "https://api.github.com/repos/"
-        url += uName + "/" + rName
+    static func get(UserName userName: String, RepositoryName repoName: String, successHandler: @escaping (Repository) -> Void, errorHandler: @escaping (Error?) -> Void) { //call GitHub API and decode response
+
+        let url = "https://api.github.com/repos/\(userName)/\(repoName)"
+//        url += userName + "/" + repoName
 
         let myUrl: URL = URL(string: url)!
         let session = URLSession.shared.dataTask(with: myUrl){ data, response, error in
-            
+            print("session start")
             if let error = error {
                 print("クライアントエラー: \(error.localizedDescription) \n" )
+                errorHandler(error)
                 return
             }
             
             guard let response = response as? HTTPURLResponse else {
                 print("No Response")
+                errorHandler(nil) //エラー作って入れる？
                 return
             }
             
             guard let data = data else {
                 print("No Response")
+                errorHandler(nil) //エラー作って入れる？
                 return
             }
             
@@ -41,18 +45,30 @@ class GHAPIModel {  //GitHub API Model
             } else {
                 print("url: \(url)")
                 print("サーバーサイドエラー ステータスコード: \(response.statusCode)\n")
+                errorHandler(nil)   //エラー作って入れる？
             }
-            self.parseJSON(data)  //decode
+
+            let result: Repository = parse(data)
+            successHandler(result)
+            print("session end")
+           
         }
+        print("session resume before")
         session.resume()
+        print("session resume after")
     }
     
-    
-    static func parseJSON(_ data: Data) {
+    func parseJSON(_ data: Data) -> Repository {
         print("parse start")
-        let repo = try? Repository.decodeValue(from: data)
-        result = repo
+        let repository = try! Repository.decodeValue(from: data)
+        return repository
     }
+    static func parse(_ data: Data) -> Repository {
+        let repository = try! Repository.decodeValue(from: data)
+        return repository
+    }
+    
+
     
     struct Repository: Himotoki.Decodable {
         let id: Int

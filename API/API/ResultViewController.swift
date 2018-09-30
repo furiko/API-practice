@@ -14,8 +14,8 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var updateDate: UILabel!
     @IBOutlet weak var numOfFork: UILabel!
     @IBOutlet weak var doesIssueExist: UILabel!
-    var result: GHAPIModel.Repository!
-    let controller = ViewGHAPIController()
+    var result: GitHubAPIModel.Repository!
+    let controller = ViewGitHubAPIController()
     override func viewDidLoad() {
         super.viewDidLoad()
         setResult()

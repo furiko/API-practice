@@ -9,8 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let controller = ViewGHAPIController()
-    var result: GHAPIModel.Repository?
+    let controller = ViewGitHubAPIController()
+    var result: GitHubAPIModel.Repository?
     @IBOutlet weak var UserName: UITextField!
     @IBOutlet weak var RepositryName: UITextField!
     
@@ -21,11 +21,12 @@ class ViewController: UIViewController {
         
         if user != "" && repo != "" {
             controller.callGitHubAPI(UserName: user, RepositoryName: repo)    //ModelにRepositoryの中身を取りに行ってもらう
-            DispatchQueue.main.asyncAfter(deadline: .now()+1.0){    //1秒遅延してAPIから値が返ってくるのを待つ
+            //DispatchQueue.main.asyncAfter(deadline: .now()+1.0){    //1秒遅延してAPIから値が返ってくるのを待つ
+                print("storyboard作成")
                 let storyboard: UIStoryboard = self.storyboard!
-                let second = storyboard.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
-                self.present(second, animated: true, completion: nil)
-            }
+                let next = storyboard.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
+                present(next, animated: true, completion: nil)
+           // }
 
         } else {
             print("title blank")
