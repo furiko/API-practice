@@ -15,7 +15,6 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var numOfFork: UILabel!
     @IBOutlet weak var doesIssueExist: UILabel!
     var result: GitHubAPIModel.Repository!
-    let controller = ViewGitHubAPIController()
     override func viewDidLoad() {
         super.viewDidLoad()
         setResult()
@@ -23,7 +22,7 @@ class ResultViewController: UIViewController {
     }
     
    func setResult() {   //set to TextField
-        result = controller.getResult()
+        result = GitHubAPIModel.result!
         repoName.text = result.name
     
         //convert from ISO8601 to Date and formatting
@@ -38,8 +37,9 @@ class ResultViewController: UIViewController {
         createDate.text = f.string(from: createdDate!)
         updateDate.text = f.string(from: updatedDate!)
         numOfFork.text = String(result.forksCount)
-//        let name = result.owner
-//        print(name)
+
+        print("owner id: \(result.owner.id)")
+        print("owner login: \(result.owner.login)")
     
         if result!.hasIssues {
             doesIssueExist.text = "Yes"

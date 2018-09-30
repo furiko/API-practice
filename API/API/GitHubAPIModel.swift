@@ -11,12 +11,11 @@ import Himotoki
 
 class GitHubAPIModel {  //GitHub API Model
     static var result: Repository?
-
+    static var error: Error?
 
     static func get(UserName userName: String, RepositoryName repoName: String, successHandler: @escaping (Repository) -> Void, errorHandler: @escaping (Error?) -> Void) { //call GitHub API and decode response
 
         let url = "https://api.github.com/repos/\(userName)/\(repoName)"
-//        url += userName + "/" + repoName
 
         let myUrl: URL = URL(string: url)!
         let session = URLSession.shared.dataTask(with: myUrl){ data, response, error in
@@ -46,16 +45,14 @@ class GitHubAPIModel {  //GitHub API Model
                 print("url: \(url)")
                 print("サーバーサイドエラー ステータスコード: \(response.statusCode)\n")
                 errorHandler(nil)   //エラー作って入れる？
+                return 
             }
 
             let result: Repository = parse(data)
             successHandler(result)
-            print("session end")
            
         }
-        print("session resume before")
         session.resume()
-        print("session resume after")
     }
     
     func parseJSON(_ data: Data) -> Repository {
@@ -77,7 +74,7 @@ class GitHubAPIModel {  //GitHub API Model
         let updatedAt: String
         let forksCount: Int
         let hasIssues: Bool
-//        let owner: String
+        let owner: Owner
         static func decode(_ e: Extractor) throws -> Repository {
             return try Repository (
                 id: e <| "id",
@@ -85,87 +82,21 @@ class GitHubAPIModel {  //GitHub API Model
                 createdAt: e <| "created_at",
                 updatedAt: e <| "updated_at",
                 forksCount: e <| "forks_count",
-                hasIssues: e <| "has_issues"
-/*                owner: e <| ["login", "avatar_url"]*/
+                hasIssues: e <| "has_issues",
+                owner: e <| "owner"
             )
         }
     }
-    /*    func parseJSON(_ data: Data?) {
-        guard let data = data else {
-            print("Error: No data to decode")
-            return
-        }
-        
-        guard let repo = try? JSONDecoder().decode(Repository.self, from: data) else {
-            print("Error: Couldn't decode to Repository")
-            return
-        }
-        
-        print(repo)
-    }
-    */
-
-
-    /*
-    struct Owner: Decodable {
+    
+    struct Owner: Himotoki.Decodable {
         let login: String
         let id: Int
-        let nodeId: String
-        /*let avatarUrl: String
-         let gravatarId: String
-         let Private: Bool
-         let collaboratorsUrl: String*/
-        enum Codingkeys: String, CodingKey {
-            case login
-            case id
-            case nodeId = "node_id"
-            /*case avatarUrl = "avatar_url"
-             case gravatarId = "gravatar_id"
-             case Private = "private"
-             case collaboratorsUrl = "collaborators_url"*/
+        
+        static func decode(_ e: Extractor) throws -> Owner {
+            return try Owner (
+                login: e <| "login",
+                id: e <| "id"
+            )
         }
     }
- */
-    
-
-    /*
-    struct Repository: Decodable {
-        let id: Int
-        let nodeId: String
-        let name: String
-        let fullName: String
-//        let owner: Owner
-        
-        let createdAt: String
-        let updatedAt: String
-        let pushedAt: String
-
-        let forksCount: Int
-        let hasIssues: Bool
-        let openIssuesCount: Int
-        
-        let collaboratorsUrl: String
-        
-        enum CodingKeys: String, CodingKey {
-            case id
-            case nodeId = "node_id"
-            case name
-            case fullName = "full_name"
-//            case owner
-            
-            case createdAt = "created_at"
-            case updatedAt = "updated_at"
-            case pushedAt = "pushed_at"
-        
-            case forksCount = "forks_count"
-            case hasIssues = "has_issues"
-            case openIssuesCount = "open_issues_count"
-        
-            case collaboratorsUrl = "collaborators_url"
-        }
-    }
- */
-    
-
-
 }
