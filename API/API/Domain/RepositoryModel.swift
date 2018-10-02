@@ -16,7 +16,7 @@ struct RepositoryModel {
     let forksCount: Int
     let hasIssues: Bool
     
-    func toString() -> String {
+    /*func toString() -> String {
         return "id: \(id), name: \(name), createdAt: \(createdAt), updatedAt: \(updatedAt), forksCount: \(forksCount), hasIssues: \(hasIssues)"
-    }
+    }*/
 }

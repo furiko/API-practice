@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class OldViewController: UIViewController {
     var result: GitHubAPIModel.Repository?
     @IBOutlet weak var UserName: UITextField!
     @IBOutlet weak var RepositryName: UITextField!
@@ -23,12 +23,12 @@ class ViewController: UIViewController {
                 GitHubAPIModel.result = repository
                 print("stored result in GitHubAPIModel.result")
                 
-                DispatchQueue.main.async{
+               /* DispatchQueue.main.async{
                     print("mainスレッドでstoryboard作成")
                     let storyboard: UIStoryboard = self.storyboard!
                     let next = storyboard.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
                     self.present(next, animated: true, completion: nil)
-                }
+                }*/
                 
             }, errorHandler: { error in
                 print("Error: \(String(describing: error))")

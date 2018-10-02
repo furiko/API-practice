@@ -54,7 +54,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Search"/>
                                 <connections>
-                                    <action selector="tapSearchButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="AAx-ah-d4k"/>
+                                    <action selector="tapSearchButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Oq-sJ-S8a"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -83,8 +83,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="RepositryName" destination="Tge-sq-Tk5" id="qni-xv-top"/>
-                        <outlet property="UserName" destination="faJ-V9-x1W" id="BP7-mz-Xk3"/>
+                        <outlet property="RepositoryName" destination="Tge-sq-Tk5" id="iby-YF-08N"/>
+                        <outlet property="UserName" destination="faJ-V9-x1W" id="lG1-au-UDd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -198,11 +198,11 @@
                         <viewLayoutGuide key="safeArea" id="cNJ-cw-XRG"/>
                     </view>
                     <connections>
-                        <outlet property="createDate" destination="8pJ-9y-0e1" id="FA5-L7-0Vo"/>
-                        <outlet property="doesIssueExist" destination="uVV-Md-4bz" id="bjs-JA-iEM"/>
-                        <outlet property="numOfFork" destination="WbV-0h-I4e" id="eC6-hr-fJO"/>
-                        <outlet property="repoName" destination="SWA-Kh-23u" id="5nG-cb-C6V"/>
-                        <outlet property="updateDate" destination="Hhz-pt-ti9" id="Ws6-y7-wwV"/>
+                        <outlet property="createdAt" destination="8pJ-9y-0e1" id="N2W-3x-x2U"/>
+                        <outlet property="forksCounts" destination="WbV-0h-I4e" id="4aK-FS-MEe"/>
+                        <outlet property="repoHasIssues" destination="uVV-Md-4bz" id="O9H-S1-sSP"/>
+                        <outlet property="repoName" destination="SWA-Kh-23u" id="EBz-Ik-aBQ"/>
+                        <outlet property="updatedAt" destination="Hhz-pt-ti9" id="FBK-bI-eWy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTF-3A-q4h" userLabel="First Responder" sceneMemberID="firstResponder"/>
