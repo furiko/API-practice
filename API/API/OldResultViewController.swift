@@ -5,15 +5,15 @@
 //  Created by futa on 2018/09/27.
 //  Copyright © 2018年 furiko. All rights reserved.
 //
-
+/*
 import UIKit
 
-class oldResultViewController: UIViewController {
-    @IBOutlet weak var repoName: UILabel!
-    @IBOutlet weak var createDate: UILabel!
-    @IBOutlet weak var updateDate: UILabel!
-    @IBOutlet weak var numOfFork: UILabel!
-    @IBOutlet weak var doesIssueExist: UILabel!
+class OldResultViewController: UIViewController {
+
+
+
+
+
     var result: GitHubAPIModel.Repository!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,3 +49,4 @@ class oldResultViewController: UIViewController {
     }
  
 }
+*/
